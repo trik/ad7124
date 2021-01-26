@@ -10,7 +10,7 @@
 *
 * Redistribution and use in source and binary forms, with or without modification,
 * are permitted provided that the following conditions are met:
-*  - Redistributions of source code must retain the above copyright
+*  - Redistributions of source code must srcain the above copyright
 *    notice, this list of conditions and the following disclaimer.
 *  - Redistributions in binary form must reproduce the above copyright
 *    notice, this list of conditions and the following disclaimer in
@@ -523,7 +523,7 @@ const Ad7124Register Ad7124Register::DefaultRegs[] PROGMEM = {
   {0x04, 0x0000, 2, 1}, /* IOCon2 */
   {0x05, 0x02,   1, 2}, /* ID */
   {0x06, 0x0000, 3, 2}, /* Error */
-  {0x07, 0x0044, 3, 1}, /* Error_En */
+  {0x07, 0x0040, 3, 1}, /* Error_En */
   {0x08, 0x00,   1, 2}, /* Mclk_Count */
   {0x09, 0x8001, 2, 1}, /* Channel_0 */
   {0x0A, 0x0001, 2, 1}, /* Channel_1 */
