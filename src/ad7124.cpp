@@ -66,8 +66,8 @@ Ad7124Chip::currentChannel() {
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setChannel (uint8_t ch, uint8_t cfg, InputSel ainp,
-                        InputSel ainm, bool enable) {
+Ad7124Chip::setChannel (uint8_t ch, uint8_t cfg, int ainp,
+                        int ainm, bool enable) {
 
   if ( (ch < 16) && (cfg < 8)) {
     Ad7124Register * r;
@@ -135,8 +135,8 @@ Ad7124Chip::channelConfig (uint8_t ch) {
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setConfig (uint8_t cfg, RefSel ref, PgaSel pga,
-                       bool bipolar, BurnoutCurrent burnout) {
+Ad7124Chip::setConfig (uint8_t cfg, int ref, int pga,
+                       bool bipolar, int burnout) {
 
   if (cfg < 8) {
     Ad7124Register * r;
@@ -157,7 +157,7 @@ Ad7124Chip::setConfig (uint8_t cfg, RefSel ref, PgaSel pga,
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setConfigFilter (uint8_t cfg, FilterType filter, uint16_t fs, PostFilterType postfilter, bool rej60, bool single) {
+Ad7124Chip::setConfigFilter (uint8_t cfg, int filter, uint16_t fs, int postfilter, bool rej60, bool single) {
 
   if (cfg < 8) {
     Ad7124Register * r;
@@ -201,7 +201,7 @@ Ad7124Chip::setConfigGain (uint8_t cfg, uint32_t value) {
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setCurrentSource (uint8_t source, uint8_t ch, IoutCurrent current) {
+Ad7124Chip::setCurrentSource (uint8_t source, uint8_t ch, int current) {
   Ad7124Register * r;
 
   r = &reg[IOCon_1];
@@ -225,17 +225,17 @@ Ad7124Chip::setBiasPins (uint16_t pinMask) {
 
   r = &reg[IOCon_2];
   r->value &= 0xCC33;
-  
+
   r->value |= pinMask;
-  
+
   return writeRegister (IOCon_2);
 }
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setAdcControl (OperatingMode mode,
-                           PowerMode power_mode,
-                           bool ref_en, ClkSel clk_sel) {
+Ad7124Chip::setAdcControl (int mode,
+                           int power_mode,
+                           bool ref_en, int clk_sel) {
   Ad7124Register * r;
 
   r = &reg[ADC_Control];
@@ -250,7 +250,7 @@ Ad7124Chip::setAdcControl (OperatingMode mode,
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::setMode (OperatingMode mode) {
+Ad7124Chip::setMode (int mode) {
   Ad7124Register * r;
 
   r = &reg[ADC_Control];
@@ -373,9 +373,9 @@ Ad7124Chip::internalCalibration (uint8_t ch) {
 }
 
 // -----------------------------------------------------------------------------
+// NOTE – Changed argument from type RegisterId to int
 long
-Ad7124Chip::getRegister (RegisterId id) {
-
+Ad7124Chip::getRegister (int id) {
   if ( (id >= Status) && (id < Reg_No))  {
     int ret;
 
@@ -390,8 +390,9 @@ Ad7124Chip::getRegister (RegisterId id) {
 }
 
 // -----------------------------------------------------------------------------
+// NOTE – Changed argument from type RegisterId to int
 int
-Ad7124Chip::setRegister (RegisterId id, long value) {
+Ad7124Chip::setRegister (int id, long value) {
 
   if ( (id >= Status) && (id < Reg_No))  {
 
@@ -425,14 +426,14 @@ Ad7124Chip::toVoltage (long value, int gain, double vref, bool bipolar) {
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::readRegister (RegisterId id) {
+Ad7124Chip::readRegister (int id) {
 
   return d.readRegister (&reg[id]);
 }
 
 // -----------------------------------------------------------------------------
 int
-Ad7124Chip::writeRegister (RegisterId id) {
+Ad7124Chip::writeRegister (int id) {
 
   return d.writeRegister (reg[id]);
 }

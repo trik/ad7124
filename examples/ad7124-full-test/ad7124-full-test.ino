@@ -49,7 +49,7 @@ Ad7124Chip adc;
 // Prints AD7124 register value
 void printreg (int reg) {
   char name[16];
-
+	// FIXME - Register functions expect AD7124::RegisterId not int here
   if (Ad7124Register::copyRegisterName (reg, name) > 0) {
     long value = adc.getRegister (reg);
 

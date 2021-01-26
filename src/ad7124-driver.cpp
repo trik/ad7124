@@ -69,7 +69,7 @@ Ad7124Driver::init (uint8_t slaveDeviceId, bool lsbFirst,
 
     dataMode = SPI_MODE3;
   }
-  
+
   SPI.begin();
   return true;
 }

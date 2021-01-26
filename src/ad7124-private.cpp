@@ -605,8 +605,9 @@ namespace Ad7124 {
 }
 
 // -----------------------------------------------------------------------------
+// NOTE – Changed argument from type RegisterId to Int
 int
-Ad7124Register::copyRegisterName (RegisterId id, char * name) {
+Ad7124Register::copyRegisterName (int id, char * name) {
 
   if ( (id >= Channel_0) && (id <= Channel_15)) {
 

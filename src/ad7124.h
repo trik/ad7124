@@ -223,14 +223,14 @@ class Ad7124Chip {
      * @param clk_sel select the clock source for the ADC
      * @return 0 for success or negative error code
      */
-    int setAdcControl (Ad7124::OperatingMode mode, Ad7124::PowerMode power_mode, bool ref_en = true, Ad7124::ClkSel clk_sel = Ad7124::InternalClk);
+    int setAdcControl (int mode, int power_mode, bool ref_en = true, int clk_sel = Ad7124::InternalClk);
 
     /**
      * @brief Control the mode of operation for ADC
      * @param mode mode of operation
      * @return 0 for success or negative error code
      */
-    int setMode (Ad7124::OperatingMode mode);
+    int setMode (int mode);
 
     /**
      * @brief Setup channel
@@ -241,7 +241,7 @@ class Ad7124Chip {
      * @param enable Channel enable bit. Setting this bit enables the device channel for the conversion sequence.
      * @return 0 for success or negative error code
      */
-    int setChannel (uint8_t ch, uint8_t cfg, Ad7124::InputSel ainp, Ad7124::InputSel ainm, bool enable = false);
+    int setChannel (uint8_t ch, uint8_t cfg, int ainp, int ainm, bool enable = false);
 
     /**
      * @brief Enable/Disable channel
@@ -269,7 +269,7 @@ class Ad7124Chip {
      * @param burnout These bits select the magnitude of the sensor burnout detect current source.
      * @return 0 for success or negative error code
      */
-    int setConfig (uint8_t cfg, Ad7124::RefSel ref, Ad7124::PgaSel pga, bool bipolar, Ad7124::BurnoutCurrent burnout = Ad7124::BurnoutOff);
+    int setConfig (uint8_t cfg, int ref, int pga, bool bipolar, int burnout = Ad7124::BurnoutOff);
 
     /**
      * @brief Sets the filter type and output word rate for a setup
@@ -293,8 +293,8 @@ class Ad7124Chip {
      * When the fast filters are used, this bit has no effect.
      * @return 0 for success or negative error code
      */
-    int setConfigFilter (uint8_t cfg, Ad7124::FilterType filter, uint16_t fs,
-                         Ad7124::PostFilterType postfilter = Ad7124::NoPostFilter,
+    int setConfigFilter (uint8_t cfg, int filter, uint16_t fs,
+                         int postfilter = Ad7124::NoPostFilter,
                          bool rej60 = false, bool single = false);
 
     /**
@@ -334,7 +334,7 @@ class Ad7124Chip {
      * @param current current bits choice
      * @return 0 for success or negative error code
      */
-    int setCurrentSource (uint8_t source, uint8_t ch, Ad7124::IoutCurrent current);
+    int setCurrentSource (uint8_t source, uint8_t ch, int current);
 
     /**
      * @brief Setting up bias voltage on AIN-Pins
@@ -428,7 +428,7 @@ class Ad7124Chip {
      * @param id register identifier
      * @return 8 to 24 bits register value, negative for error.
      */
-    long getRegister (Ad7124::RegisterId id);
+    long getRegister (int id);
 
     /**
      * @brief Writes the value of the specified register
@@ -436,12 +436,12 @@ class Ad7124Chip {
      * @param value 8 to 24 bits register value
      * @return 0, negative for error.
      */
-    int setRegister (Ad7124::RegisterId id, long value);
+    int setRegister (int id, long value);
 
 #ifndef __DOXYGEN__
   protected:
-    int readRegister (Ad7124::RegisterId id);
-    int writeRegister (Ad7124::RegisterId id);
+    int readRegister (int id);
+    int writeRegister (int id);
 
   private:
     Ad7124Private d;

@@ -17,6 +17,7 @@
 #define __AD7124_DRIVER_ARDUINO_H__
 /* ========================================================================== */
 #include "ad7124-defs.h"
+#include <SPI.h>
 
 /**
  * @class Ad7124Driver
@@ -74,7 +75,7 @@ class Ad7124Driver {
     int write (const uint8_t * data, uint8_t len);
 
     /**
-     * @brief Pauses the program for the amount of time (in milliseconds) specified as parameter. 
+     * @brief Pauses the program for the amount of time (in milliseconds) specified as parameter.
      * @param ms in milliseconds
      * @return 0, negative for error.
      */
@@ -82,10 +83,14 @@ class Ad7124Driver {
 
   protected:
     uint8_t id;
-    
+
   private:
     uint32_t speedMaximum;
-    uint8_t dataOrder;
+#if defined(SAMD_SERIES)
+		BitOrder dataOrder;
+#else
+		uint8_t dataOrder;
+#endif
     uint8_t dataMode;
 };
 /* ========================================================================== */
