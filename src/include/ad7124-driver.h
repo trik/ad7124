@@ -79,7 +79,14 @@ class Ad7124Driver {
      * @param ms in milliseconds
      * @return 0, negative for error.
      */
-    int delay (unsigned long ms);
+    int delayMilliseconds(unsigned long ms);
+
+		/**
+		 * @brief Pauses the program for the amount of time (in microseconds) specified as parameter.
+		 * @param ms in microseconds
+		 * @return 0, negative for error.
+		 */
+		int delayMicroseconds(unsigned long us);
 
   protected:
     uint8_t id;

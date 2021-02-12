@@ -270,7 +270,7 @@ Ad7124Private::waitForSpiReady (uint32_t timeout) {
 
     if (timeout) {
 
-      drv.delay (1);
+      drv.delayMicroseconds(1);
       timeout--;
     }
   }
@@ -309,7 +309,7 @@ Ad7124Private::waitToPowerOn (uint32_t timeout) {
                   AD7124_STATUS_REG_POR_FLAG) == 0;
     if (timeout) {
 
-      drv.delay (10);
+      drv.delayMilliseconds(10);
       timeout--;
     }
   }
@@ -349,7 +349,7 @@ Ad7124Private::waitForConvReady (uint32_t timeout) {
 
     if (timeout) {
 
-      drv.delay (1);
+      drv.delayMicroseconds(1);
       timeout--;
     }
   }
